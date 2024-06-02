@@ -5,32 +5,54 @@
 //  Created by Рустем Аджигельдиев on 02/06/24.
 //
 
-import Foundation
 import UIKit
 
-class InfoVViewController: UIViewController {
+class InfoViewController: UIViewController {
+    private lazy var actionButton: UIButton = {
+        let button = UIButton()
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Message", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+        
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let button = UIButton(type: .system)
-        button.setTitle("Message", for: .normal)
-        button.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
-        button.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
-        button.center = view.center
+        view.backgroundColor = .systemTeal
+        view.addSubview(actionButton)
         
-        view.addSubview(button)
+        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            actionButton.leadingAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.leadingAnchor,
+                constant: 20.0
+            ),
+            actionButton.trailingAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.trailingAnchor,
+                constant: -20.0
+            ),
+            actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
+            actionButton.heightAnchor.constraint(equalToConstant: 44.0)
+        ])
     }
     
     @objc func showAlert() {
-        let alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Action 1", style: .default) { _ in
-            print("Action 1")
+        let alertController = UIAlertController(title: "Alert title", message: "Alert message", preferredStyle: .alert)
+        
+        let action1 = UIAlertAction(title: "Left action", style: .default) { _ in print("Action 1")
         }
-        let action2 = UIAlertAction(title: "Action 2", style: .default) { _ in
-            print("Action 2")
+        
+        let action2 = UIAlertAction(title: "Right action", style: .default) { _ in print("Action 2")
         }
+        
         alertController.addAction(action1)
         alertController.addAction(action2)
+        
         present(alertController, animated: true, completion: nil)
     }
 }

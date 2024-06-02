@@ -6,3 +6,19 @@
 //
 
 import Foundation
+import UIKit
+
+class TabBarController: UITabBarController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let feedViewController = FeedViewController()
+        let profileViewController = ProfileViewController()
+        
+        let constollers = [feedViewController, profileViewController]
+        
+        viewControllers = constollers.map({ UINavigationController(rootViewController: $0) })
+    }
+    
+}

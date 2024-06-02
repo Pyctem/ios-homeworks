@@ -7,13 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FeedViewController: UIViewController {
     
-    private lazy var actionButton: UIButton = {
+    private lazy var actionButton = {
         let button = UIButton()
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Post", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         
         return button
     }()
@@ -22,8 +24,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(actionButton)
-                
+        
+        title = "Feed"
+        tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "book"), selectedImage: nil)
+        
+        view.backgroundColor = .systemBackground
+        
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
+        
         NSLayoutConstraint.activate([
             actionButton.leadingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.leadingAnchor,
@@ -36,16 +44,13 @@ class ViewController: UIViewController {
             actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             actionButton.heightAnchor.constraint(equalToConstant: 44.0)
         ])
-        
-        actionButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
     }
     
     @objc func buttonPressed(_ sender: UIButton) {
         let postViewController = PostViewController()
         
-        postViewController.modalTransitionStyle = .coverVertical
-        postViewController.modalPresentationStyle = .pageSheet
+        postViewController.post = Post(title: "Post title")
         
-        present(postViewController, animated: true)
+        navigationController?.pushViewController(postViewController, animated: true)
     }
 }
