@@ -51,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				9133DD892C0C4F8C00EE126E /* Navigation */,
+				9133DDA82C0C9C6500EE126E /* .gitignore */,
 				9133DD882C0C4F8C00EE126E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,7 +78,6 @@
 				9133DD952C0C4F8D00EE126E /* LaunchScreen.storyboard */,
 				9133DD982C0C4F8D00EE126E /* Info.plist */,
 				9133DDA42C0C7B1A00EE126E /* Post.swift */,
-				9133DDA82C0C9C6500EE126E /* .gitignore */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
