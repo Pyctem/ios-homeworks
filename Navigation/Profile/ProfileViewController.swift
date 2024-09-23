@@ -16,10 +16,22 @@ class ProfileViewController: UIViewController {
         
         tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: nil)
         view.backgroundColor = .lightGray
+        view.addSubview(profileHeaderView)
+        
+        setupConstraints()
     }
     
-    override func viewWillLayoutSubviews() {
-        view.addSubview(profileHeaderView)
-        profileHeaderView.frame = self.view.frame
+    private func setupConstraints() {
+        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            // Привязываем к Safe Area сверху
+            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            // Отступы по бокам
+            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            // Устанавливаем высоту 220
+            profileHeaderView.heightAnchor.constraint(equalToConstant: 220)
+        ])
     }
 }
