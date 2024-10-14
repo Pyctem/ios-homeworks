@@ -14,11 +14,14 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let feedViewController = FeedViewController()
-        let profileViewController = ProfileViewController()
+        let profileViewController = LogInViewController()
         
-        let constollers = [feedViewController, profileViewController]
+        let controllers = [feedViewController, profileViewController].map { viewController in
+            let navController = UINavigationController(rootViewController: viewController)
+            navController.isNavigationBarHidden = true
+            return navController
+        }
         
-        viewControllers = constollers.map({ UINavigationController(rootViewController: $0) })
-    }
-    
+        viewControllers = controllers
+    }    
 }
