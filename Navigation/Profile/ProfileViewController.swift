@@ -65,14 +65,20 @@ class ProfileViewController: UIViewController {
     
     private func tuneTableView() {
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 50
-        
+        tableView.estimatedRowHeight = 200
+        tableView.separatorStyle = .none
+
         tableView.setAndLayout(headerView: profileHeaderView)
         tableView.tableFooterView = UIView()
         
         tableView.register(
             PostTableViewCell.self,
             forCellReuseIdentifier: "custom"
+        )
+        
+        tableView.register(
+            PhotoTableViewCell.self,
+            forCellReuseIdentifier: PhotoTableViewCell.identifier
         )
                 
         tableView.dataSource = self
@@ -85,14 +91,14 @@ extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(
         in tableView: UITableView
     ) -> Int {
-        1
+        2
     }
     
     func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        data.count
+        section == 0 ? 1 : data.count
     }
 
     func tableView(
@@ -100,16 +106,33 @@ extension ProfileViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "custom",
-            for: indexPath
-        ) as? PostTableViewCell else {
-            fatalError("could not dequeueReusableCell")
+        if (indexPath.section == 0) {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: PhotoTableViewCell.identifier,
+                for: indexPath
+            ) as? PhotoTableViewCell else {
+                fatalError("could not dequeueReusableCell")
+            }
+            
+            cell.onPhotoSelected = { [weak self] indexPath in
+                let photosViewController = PhotosViewController()
+                self?.navigationController?.pushViewController(photosViewController, animated: true)
+            }
+            
+            return cell
+            
+        } else {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: "custom",
+                for: indexPath
+            ) as? PostTableViewCell else {
+                fatalError("could not dequeueReusableCell")
+            }
+            
+            cell.update(data[indexPath.row])
+            
+            return cell
         }
-        
-        cell.update(data[indexPath.row])
-        
-        return cell
     }
 }
 
