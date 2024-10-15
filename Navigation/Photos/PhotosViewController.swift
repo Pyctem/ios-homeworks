@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import StorageService
 
 final class PhotosViewController: UIViewController {
     fileprivate let data = PostItem.make()
