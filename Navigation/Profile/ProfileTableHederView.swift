@@ -65,15 +65,29 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupViews()  // Добавление элементов и настройка Auto Layout
+        tuneView()
+        addViews()
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(
+            width: UIView.noIntrinsicMetric,
+            height: 200
+        )
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupViews() {
-        // Добавляем все необходимые подвиды
+    private func tuneView() {
+        backgroundColor = .secondarySystemBackground
+        
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func addViews() {
         addSubview(avatarImageView)
         addSubview(fullNameLabel)
         addSubview(statusLabel)
@@ -81,28 +95,27 @@ class ProfileHeaderView: UIView {
         addSubview(setStatusButton)
         
         NSLayoutConstraint.activate([
-            avatarImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             avatarImageView.widthAnchor.constraint(equalToConstant: 100),
             avatarImageView.heightAnchor.constraint(equalToConstant: 100),
             
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            fullNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 8),
             
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            statusTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 8),
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
             
-            
-            setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            setStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50)  // Высота кнопки
+            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
     }
 }
