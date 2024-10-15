@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct PostItem {
-    let author: String
-    let description: String
-    let image: String
-    let likes: Int
-    let views: Int
+public struct PostItem {
+    public let author: String
+    public let description: String
+    public let image: String
+    public let likes: Int
+    public let views: Int
 }
 
 extension PostItem {
-    static func make() -> [PostItem] {
+    public static func make() -> [PostItem] {
         [
             PostItem(author: "Joe Doe", description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", image: "dohn_doe", likes: 10, views: 20),
             PostItem(author: "Wayne Rooney", description: "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla", image: "wayne_rooney", likes: 15, views: 20),
