@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     private lazy var postTitle: UILabel = {
@@ -122,9 +123,12 @@ class PostTableViewCell: UITableViewCell {
     
     func update(_ model: PostItem) {
         postTitle.text = model.author;
-        postImage.image = UIImage(named: model.image)
         postDescription.text = model.description
         postLikes.text = String(model.likes)
         postViews.text = String(model.views)
+                
+        let ip = ImageProcessor()
+        
+        ip.processImage(sourceImage: UIImage(named: model.image)!, filter: .tonal, completion: { img in postImage.image = img })
     }
 }
