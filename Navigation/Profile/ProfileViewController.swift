@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
     fileprivate let data = PostItem.make()
@@ -51,7 +52,13 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: nil)
+        
+        
+        #if DEBUG
         view.backgroundColor = .lightGray
+        #else
+        view.backgroundColor = .purple
+        #endif
         
         setupViews()
         setupConstraints()
