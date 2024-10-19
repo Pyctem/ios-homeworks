@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 
 class LogInViewController: UIViewController {
-    private let userService: UserService
-    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -131,20 +129,6 @@ class LogInViewController: UIViewController {
         return button
     }()
     
-    init(userService: CurrentUserService) {
-        #if DEBUG
-        self.userService = TestUserService()
-        #else
-        let currentUser = User(username: "Username", fullName: "User Fullname", avatar: UIImage(), status: "User status")
-        self.userService = CurrentUserService(user: currentUser)
-        #endif
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -241,27 +225,8 @@ class LogInViewController: UIViewController {
     }
     
     @objc func logInButtonTapped() {
-        guard let login = loginTextField.text, !login.isEmpty else {
-            showAlert("Please enter a login.")
-            return
-        }
-        
-        if let user = userService.getUser(by: login) {
-            let profileViewController = ProfileViewController(user: user)
-            navigationController?.pushViewController(profileViewController, animated: true)
-        } else {
-            showAlert("User not found.")
-        }
-    }
-    
-    private func showAlert(_ message: String) {
-        let alert = UIAlertController(
-            title: "Error",
-            message: message,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        let profileViewController = ProfileViewController()
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     @objc func willShowKeyboard(_ notification: Notification) {

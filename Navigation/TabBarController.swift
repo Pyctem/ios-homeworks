@@ -14,8 +14,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let feedViewController = FeedViewController()
-        let profileViewController = LogInViewController(userService: CurrentUserService(user: User(username: "User", fullName: "FullUsername", avatar: UIImage(named: "cat")!, status: "UserStatus")))
-
+        let profileViewController = LogInViewController()
         
         let controllers = [feedViewController, profileViewController].map { viewController in
             let navController = UINavigationController(rootViewController: viewController)

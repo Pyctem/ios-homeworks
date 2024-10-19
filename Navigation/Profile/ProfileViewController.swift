@@ -13,16 +13,6 @@ class ProfileViewController: UIViewController {
     fileprivate let data = PostItem.make()
     
     private let profileHeaderView = ProfileHeaderView()
-    private var user: User
-    
-    init(user: User) {
-        self.user = user
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
@@ -73,7 +63,6 @@ class ProfileViewController: UIViewController {
         setupViews()
         setupConstraints()
         tuneTableView()
-        configureProfileHeader()
         
         closeView.addTarget(self, action: #selector(handleCloseButtonTap), for: .touchUpInside)
         
@@ -140,12 +129,6 @@ class ProfileViewController: UIViewController {
                 
         tableView.dataSource = self
         tableView.delegate = self
-    }
-    
-    private func configureProfileHeader() {
-        profileHeaderView.avatarImageView.image = user.avatar
-        profileHeaderView.fullNameLabel.text = user.fullName
-        profileHeaderView.statusLabel.text = user.status
     }
     
     @objc private func handleAvatarTap() {
