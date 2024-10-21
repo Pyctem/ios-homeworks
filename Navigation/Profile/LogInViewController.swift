@@ -8,7 +8,28 @@
 import Foundation
 import UIKit
 
+protocol LoginViewControllerDelegate {
+    func check(_ login: String, _ password: String) -> Bool
+}
+
+protocol LoginFactory {
+    func makeLoginInspector() -> LoginInspector
+}
+
+struct LoginInspector: LoginViewControllerDelegate {
+    func check(_ login: String, _ password: String) -> Bool {
+        return Checker.shared.check(login: login, password: password)
+    }
+}
+
+struct MyLoginFactory: LoginFactory {
+    func makeLoginInspector() -> LoginInspector {
+        LoginInspector()
+    }
+}
+
 class LogInViewController: UIViewController {
+    var loginDelegate: LoginViewControllerDelegate?
     private let userService: UserService
     
     private lazy var scrollView: UIScrollView = {
@@ -135,7 +156,7 @@ class LogInViewController: UIViewController {
         #if DEBUG
         self.userService = TestUserService()
         #else
-        let currentUser = User(username: "Username", fullName: "User Fullname", avatar: UIImage(), status: "User status")
+        let currentUser = User(username: "MyLogin", fullName: "MyPassword", avatar: UIImage(), status: "User status")
         self.userService = CurrentUserService(user: currentUser)
         #endif
         super.init(nibName: nil, bundle: nil)
@@ -246,7 +267,12 @@ class LogInViewController: UIViewController {
             return
         }
         
-        if let user = userService.getUser(by: login) {
+        guard let password = passwordTextField.text, !password.isEmpty else {
+            showAlert("Please enter a password.")
+            return
+        }
+        
+        if let user = userService.getUser(by: login), loginDelegate?.check(user.username, password) ?? false {
             let profileViewController = ProfileViewController(user: user)
             navigationController?.pushViewController(profileViewController, animated: true)
         } else {
