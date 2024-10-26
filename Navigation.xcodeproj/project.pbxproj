@@ -36,6 +36,7 @@
 		918D26C92CC4309F008AE607 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918D26C82CC4309F008AE607 /* CurrentUserService.swift */; };
 		918D26CB2CC430C8008AE607 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918D26CA2CC430C8008AE607 /* TestUserService.swift */; };
 		918D26CD2CC430E7008AE607 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918D26CC2CC430E7008AE607 /* User.swift */; };
+		91B1E67E2CC6CC510073FCE8 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1E67D2CC6CC510073FCE8 /* Checker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		918D26C82CC4309F008AE607 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		918D26CA2CC430C8008AE607 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		918D26CC2CC430E7008AE607 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		91B1E67D2CC6CC510073FCE8 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		C9DC74C2334B09D89873B6E4 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		D0CD71DB63E63CA20668F642 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,11 +192,12 @@
 				9133DDA62C0C813900EE126E /* InfoViewController.swift */,
 				9133DD9E2C0C5B2800EE126E /* PostViewController.swift */,
 				9133DD8E2C0C4F8C00EE126E /* FeedViewController.swift */,
+				9133DDA42C0C7B1A00EE126E /* Post.swift */,
+				91B1E67D2CC6CC510073FCE8 /* Checker.swift */,
+				91528C702CAF07C8007693A8 /* UiTableView.swift */,
 				9133DD932C0C4F8D00EE126E /* Assets.xcassets */,
 				9133DD952C0C4F8D00EE126E /* LaunchScreen.storyboard */,
 				9133DD982C0C4F8D00EE126E /* Info.plist */,
-				9133DDA42C0C7B1A00EE126E /* Post.swift */,
-				91528C702CAF07C8007693A8 /* UiTableView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9133DD9F2C0C5B2800EE126E /* PostViewController.swift in Sources */,
+				91B1E67E2CC6CC510073FCE8 /* Checker.swift in Sources */,
 				912B77802CBAC94800FAA7B9 /* PhotosViewController.swift in Sources */,
 				91528C712CAF07C8007693A8 /* UiTableView.swift in Sources */,
 				9133DD8F2C0C4F8C00EE126E /* FeedViewController.swift in Sources */,
