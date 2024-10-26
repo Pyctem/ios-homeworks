@@ -8,9 +8,14 @@
 import Foundation
 import UIKit
 import StorageService
+import iOSIntPackage
 
-final class PhotosViewController: UIViewController {
+final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     fileprivate let data = PostItem.make()
+    
+    var images: [UIImage] = []
+    
+    private var imagePublisher = ImagePublisherFacade()
     
     private let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -36,6 +41,10 @@ final class PhotosViewController: UIViewController {
         setupView()
         setupSubviews()
         setupLayouts()
+        
+        images = fillImage()
+        imagePublisher.subscribe(self)
+        imagePublisher.addImagesWithTimer(time: 0.5, repeat: images.count, userImages: images)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +55,10 @@ final class PhotosViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    deinit {
+        imagePublisher.removeSubscription(for: self)
     }
     
     private func setupView() {
@@ -78,6 +91,16 @@ final class PhotosViewController: UIViewController {
     private enum LayoutConstant {
         static let spacing: CGFloat = 8.0
     }
+    
+    private func fillImage() -> [UIImage] {
+        var images = [UIImage]()
+        for _ in 1...15 {
+            let post = data.randomElement()
+            let image = UIImage(named: post?.image ?? "") ?? UIImage()
+            images.append(image)
+        }
+        return images
+    }
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
@@ -86,7 +109,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        4
+        images.count
     }
 
     func collectionView(
@@ -97,9 +120,9 @@ extension PhotosViewController: UICollectionViewDataSource {
             withReuseIdentifier: PhotoCollectionViewCell.identifier,
             for: indexPath) as! PhotoCollectionViewCell
         
-        let imageName = data[indexPath.row].image        
+        let image = images[indexPath.row]
                 
-        cell.setup(with: imageName)
+        cell.setup(with: image)
         
         return cell
     }
@@ -159,5 +182,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
         LayoutConstant.spacing
+    }
+}
+
+extension PhotosViewController {
+    func receive(images: [UIImage]) {
+        self.images = images
+        self.collectionView.reloadData()
     }
 }

@@ -158,10 +158,10 @@ extension PhotoTableViewCell: UICollectionViewDataSource {
             withReuseIdentifier: PhotoCollectionViewCell.identifier,
             for: indexPath) as! PhotoCollectionViewCell
         
-        let imageName = data[indexPath.row].image;
+        let image = UIImage(named: data[indexPath.row].image)!;
         
         cell.configure(cornerRadius: 6)
-        cell.setup(with: imageName)
+        cell.setup(with: image)
         
         return cell
     }
