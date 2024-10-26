@@ -64,6 +64,7 @@ class LogInViewController: UIViewController {
     
     private lazy var loginTextField: UITextField = { [unowned self] in
         let textField = UITextField()
+        textField.text = "MyLogin"
         textField.placeholder = "Email or phone"
         textField.backgroundColor = .systemGray6
         textField.textColor = UIColor.black
@@ -91,6 +92,7 @@ class LogInViewController: UIViewController {
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
+        textField.text = "MyPassword"
         textField.placeholder = "Password"
         textField.backgroundColor = .systemGray6
         textField.textColor = UIColor.black
@@ -262,21 +264,16 @@ class LogInViewController: UIViewController {
     }
     
     @objc func logInButtonTapped() {
-        guard let login = loginTextField.text, !login.isEmpty else {
-            showAlert("Please enter a login.")
-            return
-        }
+        let login = loginTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
         
-        guard let password = passwordTextField.text, !password.isEmpty else {
-            showAlert("Please enter a password.")
-            return
-        }
-        
-        if let user = userService.getUser(by: login), loginDelegate?.check(user.username, password) ?? false {
-            let profileViewController = ProfileViewController(user: user)
-            navigationController?.pushViewController(profileViewController, animated: true)
-        } else {
-            showAlert("User not found.")
+        if ((loginDelegate?.check(login, password)) ?? false) {
+            if let user = userService.getUser(by: login) {
+                let profileViewController = ProfileViewController(user: user)
+                navigationController?.pushViewController(profileViewController, animated: true)
+            } else {
+                showAlert("User not found.")
+            }
         }
     }
     
