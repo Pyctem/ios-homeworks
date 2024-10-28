@@ -9,14 +9,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
     private lazy var actionButton: UIButton = {
-        let button = UIButton()
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Message", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
-        
-        return button
+        CustomButton(title: "Message", titleColor: .systemBlue, action: showAlert)
     }()
     
     override func viewDidLoad() {
@@ -41,7 +34,7 @@ class InfoViewController: UIViewController {
         ])
     }
     
-    @objc func showAlert() {
+    @objc func showAlert(_: UIButton) {
         let alertController = UIAlertController(title: "Alert title", message: "Alert message", preferredStyle: .alert)
         
         let action1 = UIAlertAction(title: "Left action", style: .default) { _ in print("Action 1")
