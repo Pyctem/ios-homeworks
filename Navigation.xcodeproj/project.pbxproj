@@ -23,6 +23,8 @@
 		9133DDA52C0C7B1A00EE126E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9133DDA42C0C7B1A00EE126E /* Post.swift */; };
 		9133DDA72C0C813900EE126E /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9133DDA62C0C813900EE126E /* InfoViewController.swift */; };
 		9133DDA92C0C9C6500EE126E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9133DDA82C0C9C6500EE126E /* .gitignore */; };
+		913767D92CCF427F0064252A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913767D82CCF427F0064252A /* CustomButton.swift */; };
+		913767DB2CCF5E3F0064252A /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913767DA2CCF5E3F0064252A /* FeedModel.swift */; };
 		914E0EA22CBEDFAA00F2CA0D /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 914E0EA12CBEDFAA00F2CA0D /* StorageService.docc */; };
 		914E0EA32CBEDFAA00F2CA0D /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 914E0EA02CBEDFAA00F2CA0D /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		914E0EA62CBEDFAA00F2CA0D /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914E0E9E2CBEDFAA00F2CA0D /* StorageService.framework */; };
@@ -83,6 +85,8 @@
 		9133DDA42C0C7B1A00EE126E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9133DDA62C0C813900EE126E /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9133DDA82C0C9C6500EE126E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		913767D82CCF427F0064252A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		913767DA2CCF5E3F0064252A /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		914E0E9E2CBEDFAA00F2CA0D /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		914E0EA02CBEDFAA00F2CA0D /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		914E0EA12CBEDFAA00F2CA0D /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				9133DD932C0C4F8D00EE126E /* Assets.xcassets */,
 				9133DD952C0C4F8D00EE126E /* LaunchScreen.storyboard */,
 				9133DD982C0C4F8D00EE126E /* Info.plist */,
+				913767D82CCF427F0064252A /* CustomButton.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				917813822C4828FD004CCD44 /* ProfileViewController.swift */,
 				917FF1D42CAD43EE00FA5865 /* LogInViewController.swift */,
 				91528C6C2CAEF4C1007693A8 /* ProfileTableHederView.swift */,
+				913767DA2CCF5E3F0064252A /* FeedModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -440,6 +446,8 @@
 				91B1E67E2CC6CC510073FCE8 /* Checker.swift in Sources */,
 				912B77802CBAC94800FAA7B9 /* PhotosViewController.swift in Sources */,
 				91528C712CAF07C8007693A8 /* UiTableView.swift in Sources */,
+				913767DB2CCF5E3F0064252A /* FeedModel.swift in Sources */,
+				913767D92CCF427F0064252A /* CustomButton.swift in Sources */,
 				9133DD8F2C0C4F8C00EE126E /* FeedViewController.swift in Sources */,
 				917813832C4828FD004CCD44 /* ProfileViewController.swift in Sources */,
 				912FCFEA2CB8439D00398121 /* PhotoCollectionViewCell.swift in Sources */,

@@ -8,23 +8,36 @@
 import UIKit
 
 class FeedViewController: UIViewController {
+    private var feed = FeedModel()
     
     private lazy var firstButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Open Post 1", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.addTarget(self, action: #selector(firstButtonPressed(_:)), for: .touchUpInside)
-        return button
+        CustomButton(title: "Open Post 1", titleColor: .systemBlue, action: firstButtonPressed(_:))
     }()
     
     private lazy var secondButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Open Post 2", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.addTarget(self, action: #selector(secondButtonPressed(_:)), for: .touchUpInside)
-        return button
+        CustomButton(title: "Open Post 2", titleColor: .systemBlue, action: secondButtonPressed(_:))
+    }()
+    
+    private lazy var checkGuessButton: UIButton = {
+        CustomButton(title: "Check Guess", titleColor: .systemBlue, action: checkGuess)
+    }()
+    
+    private lazy var guessTextField = {
+        let textField = UITextField()
+        
+        textField.placeholder = "Enter guess"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        return textField
+    }()
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
     }()
     
     private lazy var stackView: UIStackView = {
@@ -40,16 +53,25 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Feed"
+        tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "book"), selectedImage: nil)
+        view.backgroundColor = .systemBackground
+        
+        setupViews()
+        setupConstraints()
+    }
+    
+    private func setupViews() {
         view.addSubview(stackView)
         
         stackView.addArrangedSubview(firstButton)
         stackView.addArrangedSubview(secondButton)
-        
-        title = "Feed"
-        tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "book"), selectedImage: nil)
-        
-        view.backgroundColor = .systemBackground
-        
+        stackView.addArrangedSubview(guessTextField)
+        stackView.addArrangedSubview(checkGuessButton)
+        stackView.addArrangedSubview(label)
+    }
+    
+    private func setupConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
@@ -74,5 +96,20 @@ class FeedViewController: UIViewController {
         let postViewController = PostViewController()
         postViewController.post = Post(title: "Post 2")
         navigationController?.pushViewController(postViewController, animated: true)
+    }
+    
+    @objc private func checkGuess(_ sender: UIButton) {
+        if let guessText = guessTextField.text {
+            if (feed.check(guessText)) {
+                label.textColor = .green
+                label.text = "The guess is match"
+            } else {
+                label.textColor = .red
+                label.text = "The guess not's match"
+            }
+        } else {
+            label.text = "Is Empty"
+            label.textColor = .red
+        }
     }
 }
