@@ -269,7 +269,8 @@ class LogInViewController: UIViewController {
         
         if ((loginDelegate?.check(login, password)) ?? false) {
             if let user = userService.getUser(by: login) {
-                let profileViewController = ProfileViewController(user: user)
+                let porfileViewModel = ProfileViewModel(user: user)
+                let profileViewController = ProfileViewController(userModelView: porfileViewModel)
                 navigationController?.pushViewController(profileViewController, animated: true)
             } else {
                 showAlert("User not found.")

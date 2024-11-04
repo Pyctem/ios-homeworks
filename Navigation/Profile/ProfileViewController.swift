@@ -13,10 +13,10 @@ class ProfileViewController: UIViewController {
     fileprivate let data = PostItem.make()
     
     private let profileHeaderView = ProfileHeaderView()
-    private var user: User
+    private var userModelView: ProfileViewModel
     
-    init(user: User) {
-        self.user = user
+    init(userModelView: ProfileViewModel) {
+        self.userModelView = userModelView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -143,9 +143,9 @@ class ProfileViewController: UIViewController {
     }
     
     private func configureProfileHeader() {
-        profileHeaderView.avatarImageView.image = user.avatar
-        profileHeaderView.fullNameLabel.text = user.fullName
-        profileHeaderView.statusLabel.text = user.status
+        profileHeaderView.avatarImageView.image = userModelView.getUserAvatar()
+        profileHeaderView.fullNameLabel.text = userModelView.getUserName()
+        profileHeaderView.statusLabel.text = userModelView.getUserStatus()
     }
     
     @objc private func handleAvatarTap() {
