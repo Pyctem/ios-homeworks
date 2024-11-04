@@ -30,6 +30,8 @@ struct MyLoginFactory: LoginFactory {
 
 class LogInViewController: UIViewController {
     var loginDelegate: LoginViewControllerDelegate?
+    var coordinator: LoginCoordinator?
+    
     private let userService: UserService
     
     private lazy var scrollView: UIScrollView = {
@@ -269,8 +271,7 @@ class LogInViewController: UIViewController {
         
         if ((loginDelegate?.check(login, password)) ?? false) {
             if let user = userService.getUser(by: login) {
-                let profileViewController = ProfileViewController(user: user)
-                navigationController?.pushViewController(profileViewController, animated: true)
+                coordinator?.showUser(user: user)
             } else {
                 showAlert("User not found.")
             }
