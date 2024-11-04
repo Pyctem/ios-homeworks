@@ -42,6 +42,7 @@
 		919C844A2CD9246400B16753 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C84492CD9246400B16753 /* FeedCoordinator.swift */; };
 		919C844C2CD925D700B16753 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C844B2CD925D700B16753 /* LoginCoordinator.swift */; };
 		91B1E67E2CC6CC510073FCE8 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1E67D2CC6CC510073FCE8 /* Checker.swift */; };
+		91BACFF32CD3E7AE000DAB23 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BACFF22CD3E7AE000DAB23 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		919C84492CD9246400B16753 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		919C844B2CD925D700B16753 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		91B1E67D2CC6CC510073FCE8 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		91BACFF22CD3E7AE000DAB23 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C9DC74C2334B09D89873B6E4 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		D0CD71DB63E63CA20668F642 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +239,7 @@
 				917FF1D42CAD43EE00FA5865 /* LogInViewController.swift */,
 				91528C6C2CAEF4C1007693A8 /* ProfileTableHederView.swift */,
 				913767DA2CCF5E3F0064252A /* FeedModel.swift */,
+				91BACFF22CD3E7AE000DAB23 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				917FF1D52CAD43EE00FA5865 /* LogInViewController.swift in Sources */,
 				918D26CB2CC430C8008AE607 /* TestUserService.swift in Sources */,
 				918D26CD2CC430E7008AE607 /* User.swift in Sources */,
+				91BACFF32CD3E7AE000DAB23 /* ProfileViewModel.swift in Sources */,
 				91528C6D2CAEF4C1007693A8 /* ProfileTableHederView.swift in Sources */,
 				9133DD8D2C0C4F8C00EE126E /* SceneDelegate.swift in Sources */,
 				91528C6F2CAEF973007693A8 /* PostTableViewCell.swift in Sources */,
