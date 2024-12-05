@@ -8,6 +8,8 @@
 import UIKit
 
 class FeedViewController: UIViewController {
+    var coordinator: FeedCoordinator?
+    
     private var feed = FeedModel()
     
     private lazy var firstButton: UIButton = {
@@ -87,15 +89,15 @@ class FeedViewController: UIViewController {
     }
     
     @objc private func firstButtonPressed(_ sender: UIButton) {
-        let postViewController = PostViewController()
-        postViewController.post = Post(title: "Post 1")
-        navigationController?.pushViewController(postViewController, animated: true)
+        let post = Post(title: "Post 1")
+        
+        coordinator?.showPost(post: post)
     }
     
     @objc private func secondButtonPressed(_ sender: UIButton) {
-        let postViewController = PostViewController()
-        postViewController.post = Post(title: "Post 2")
-        navigationController?.pushViewController(postViewController, animated: true)
+        let post = Post(title: "Post 2")
+        
+        coordinator?.showPost(post: post)
     }
     
     @objc private func checkGuess(_ sender: UIButton) {
