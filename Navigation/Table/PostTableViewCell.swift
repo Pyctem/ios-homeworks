@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import StorageService
-import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     private lazy var postTitle: UILabel = {
@@ -128,9 +127,6 @@ class PostTableViewCell: UITableViewCell {
         postDescription.text = model.description
         postLikes.text = String(model.likes)
         postViews.text = String(model.views)
-        
-        let ip = ImageProcessor()
-        
-        ip.processImage(sourceImage: UIImage(named: model.image)!, filter: .tonal, completion: { img in postImage.image = img })
+        postImage.image = UIImage(named: model.image)!
     }
 }

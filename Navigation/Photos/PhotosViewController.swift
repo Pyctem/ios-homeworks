@@ -10,12 +10,10 @@ import UIKit
 import StorageService
 import iOSIntPackage
 
-final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
+final class PhotosViewController: UIViewController {
     fileprivate let data = PostItem.make()
     
     var images: [UIImage] = []
-    
-    private var imagePublisher = ImagePublisherFacade()
     
     private let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -43,8 +41,23 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         setupLayouts()
         
         images = fillImage()
-        imagePublisher.subscribe(self)
-        imagePublisher.addImagesWithTimer(time: 0.5, repeat: images.count, userImages: images)
+        let imageProcess = ImageProcessor()
+        let startTime = CFAbsoluteTimeGetCurrent()
+        imageProcess.processImagesOnThread(sourceImages: images, filter: .monochrome(color: .cyan, intensity: 4), qos: .utility) { [weak self] imgs in
+            self?.images = imgs.compactMap { cgImage in
+                if let cgImage = cgImage {
+                    return UIImage(cgImage: cgImage)
+                } else {
+                    return nil
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
+        let executionTime = CFAbsoluteTimeGetCurrent() - startTime
+        print("Время выполнения: \(executionTime) секунд")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,10 +68,6 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    deinit {
-        imagePublisher.removeSubscription(for: self)
     }
     
     private func setupView() {
