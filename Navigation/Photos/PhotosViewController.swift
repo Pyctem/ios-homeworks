@@ -52,12 +52,13 @@ final class PhotosViewController: UIViewController {
                 }
             }
             
+            let executionTime = CFAbsoluteTimeGetCurrent() - startTime
+            print("Время выполнения: \(executionTime) секунд")
+            
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
-        }
-        let executionTime = CFAbsoluteTimeGetCurrent() - startTime
-        print("Время выполнения: \(executionTime) секунд")
+        }        
     }
     
     override func viewWillAppear(_ animated: Bool) {
