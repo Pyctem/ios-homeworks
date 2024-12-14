@@ -29,7 +29,8 @@ class LoginCoordinator: BaseCoordinator {
     }
     
     func showUser(user: User) {
-        let userViewController = ProfileViewController(user: user)
-        navigationController.pushViewController(userViewController, animated: false)
+        let porfileViewModel = ProfileViewModel(user: user)
+        let profileViewController = ProfileViewController(userModelView: porfileViewModel)
+        navigationController.pushViewController(profileViewController, animated: false)
     }
 }
